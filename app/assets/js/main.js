@@ -1,38 +1,30 @@
-$.noConflict();
 
 jQuery(document).ready(function($) {
-
-	"use strict";
-
-	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
-		new SelectFx(el);
-	} );
-
-	jQuery('.selectpicker').selectpicker;
-
-
-	$('#menuToggle').on('click', function(event) {
-		$('body').toggleClass('open');
-	});
-
-	$('.search-trigger').on('click', function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		$('.search-trigger').parent('.header-left').addClass('open');
-	});
-
-	$('.search-close').on('click', function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		$('.search-trigger').parent('.header-left').removeClass('open');
-	});
-
-	// $('.user-area> a').on('click', function(event) {
-	// 	event.preventDefault();
-	// 	event.stopPropagation();
-	// 	$('.user-menu').parent().removeClass('open');
-	// 	$('.user-menu').parent().toggleClass('open');
-	// });
-
-
+	init();
 });
+function init(){
+	console.log("Inicializando pagina.");
+	dashboard();
+}
+function table(){
+	jQuery("#dynamic").empty();
+	jQuery(".active").removeClass("active");
+	jQuery("#htable").addClass("active");
+	console.log("Cargando dashboard");
+	loading();
+	jQuery("#dynamic").load("./app/table/table.html");	
+}
+function dashboard(){
+	jQuery("#dynamic").empty();
+	jQuery(".active").removeClass("active");
+	jQuery("#hdash").addClass("active");
+	console.log("Cargando dashboard");
+	loading();
+	jQuery("#dynamic").load("./app/dashboard/dashboard.html");	
+}
+/* Auxiliares */
+function loading() {
+	jQuery("#dynamic").empty();
+	jQuery("#dynamic").append("<div class='loader'></div>").delay(1000);
+	console.log("Time out exipred");
+}
