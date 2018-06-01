@@ -1,17 +1,14 @@
  <?php
 class Database{
- 
+
     private $host = "localhost";
-    private $db_name = "api_db";
+    private $db_name = "sd2";
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     public $conn;
  
-    // get the database connection
     public function getConnection(){
- 
         $this->conn = null;
- 
         try{
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");

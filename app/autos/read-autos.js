@@ -9,7 +9,6 @@ function showAutos(){
 }
 $.getJSON("http://localhost/api/autos/read.php", function(data){
 	var read_products_html="";
-
 	read_products_html+="<div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>";
 	read_products_html+="<span class='glyphicon glyphicon-plus'></span> Create Product";
 	read_products_html+="</div>";

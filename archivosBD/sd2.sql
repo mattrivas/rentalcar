@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 30, 2018 at 12:42 PM
+-- Generation Time: Jun 01, 2018 at 11:29 AM
 -- Server version: 5.7.22-0ubuntu0.17.10.1-log
 -- PHP Version: 7.1.17-0ubuntu0.17.10.1
 
@@ -28,20 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `agencia` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL
+  `nombre` varchar(100) DEFAULT NULL,
+  `ciudad` varchar(100) NOT NULL DEFAULT 'General Pico',
+  `provincia` varchar(100) NOT NULL DEFAULT 'La Pampa',
+  `pais` varchar(100) NOT NULL DEFAULT 'Argentina'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `agencia`
 --
 
-INSERT INTO `agencia` (`id`, `nombre`) VALUES
-(1, 'Agencia 1'),
-(2, 'Agencia 2'),
-(3, 'Agencia 3'),
-(4, 'Agencia 4'),
-(5, 'Agencia 5'),
-(6, 'Agencia 6');
+INSERT INTO `agencia` (`id`, `nombre`, `ciudad`, `provincia`, `pais`) VALUES
+(1, 'Agencia 1', 'General Pico', 'La Pampa', 'Argentina'),
+(2, 'Agencia 2', 'General Pico', 'La Pampa', 'Argentina'),
+(3, 'Agencia 3', 'General Pico', 'La Pampa', 'Argentina'),
+(4, 'Agencia 4', 'General Pico', 'La Pampa', 'Argentina'),
+(5, 'Agencia 5', 'General Pico', 'La Pampa', 'Argentina'),
+(6, 'Agencia 6', 'General Pico', 'La Pampa', 'Argentina');
 
 -- --------------------------------------------------------
 
@@ -93,15 +96,15 @@ CREATE TABLE `auto` (
 --
 
 INSERT INTO `auto` (`id`, `nombre`, `descripcion`, `puertas`, `marca_id`, `categoria_id`, `precio`, `fecha_hasta`, `cobertura_id`, `cobertura_aseguradora_id`, `agencia_id`, `patente`, `fecha_desde`) VALUES
-(21, 'Matias', 'dasd', 1, 3, 15, 12321, '2018-05-01', 11, 2, 5, 'AB123AB', '2018-05-01'),
-(22, 'Auto ', 'Sin descripcion ', 1, 7, 23, 5308, '2018-05-30', 2, 4, 6, 'TU9PQ', '2018-05-30'),
-(34, 'Auto ', 'Sin descripcion ', 1, 11, 18, 5743, '2018-05-30', 1, 2, 2, 'LM234DE', '2018-05-30'),
-(35, 'Auto ', 'Sin descripcion ', 4, 6, 24, 12256, '2018-05-30', 3, 4, 5, 'IJ012GH', '2018-05-30'),
-(36, 'Auto ', 'Sin descripcion ', 1, 3, 8, 6814, '2018-05-30', 4, 4, 6, 'GH234NO', '2018-05-30'),
-(44, 'Auto ', 'Sin descripcion ', 1, 3, 16, 16992, '2018-05-30', 5, 5, 2, 'WX678TU', '2018-05-30'),
-(47, 'Auto ', 'Sin descripcion ', 2, 11, 6, 15147, '2018-05-30', 3, 4, 1, 'FG678KL', '2018-05-30'),
-(52, 'Auto ', 'Sin descripcion ', 2, 10, 6, 16860, '2018-05-30', 6, 4, 2, 'MN456VW', '2018-05-30'),
-(54, 'Auto ', 'Sin descripcion ', 2, 8, 2, 10568, '2018-05-30', 4, 4, 4, 'AB234HI', '2018-05-30');
+(21, 'Matias', 'dasd', 1, 3, 15, 12321, '2018-05-01', 11, 2, 5, 'AB123AB', '2017-01-01'),
+(22, 'Auto ', 'Sin descripcion ', 1, 7, 23, 5308, '2018-05-30', 2, 4, 6, 'TU9PQ', '2017-01-01'),
+(34, 'Auto ', 'Sin descripcion ', 1, 11, 18, 5743, '2018-05-30', 1, 2, 2, 'LM234DE', '2017-01-01'),
+(35, 'Auto ', 'Sin descripcion ', 4, 6, 24, 12256, '2018-05-30', 3, 4, 5, 'IJ012GH', '2017-01-01'),
+(36, 'Auto ', 'Sin descripcion ', 1, 3, 8, 6814, '2018-05-30', 4, 4, 6, 'GH234NO', '2017-01-01'),
+(44, 'Auto ', 'Sin descripcion ', 1, 3, 16, 16992, '2018-05-30', 5, 5, 2, 'WX678TU', '2017-01-01'),
+(47, 'Auto ', 'Sin descripcion ', 2, 11, 6, 15147, '2018-05-30', 3, 4, 1, 'FG678KL', '2017-01-01'),
+(52, 'Auto ', 'Sin descripcion ', 2, 10, 6, 16860, '2018-05-30', 6, 4, 2, 'MN456VW', '2017-01-01'),
+(54, 'Auto ', 'Sin descripcion ', 2, 8, 2, 10568, '2018-05-30', 4, 4, 4, 'AB234HI', '2017-01-01');
 
 -- --------------------------------------------------------
 
@@ -291,7 +294,7 @@ ALTER TABLE `aseguradora`
 -- AUTO_INCREMENT for table `auto`
 --
 ALTER TABLE `auto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `categoria`
 --
