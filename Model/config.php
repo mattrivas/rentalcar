@@ -2,9 +2,9 @@
 //Servidor
 $server='localhost';
 //Usuario
-$user='francovallejin';
+$user='root';
 //Password
-$password='vallejin94';
+$password='';
 //Nombre Base Datos
 $db_name='rentalcar';
 ?>
