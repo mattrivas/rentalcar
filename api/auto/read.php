@@ -1,10 +1,10 @@
 <?php
 include_once './objects/product.php';
 
-function hazlotuyo($db, $terminator){
+function getAll($db, $params){
 
     $product = new Product($db);
-    $stmt = $product->read($terminator);
+    $stmt = $product->read($params);
     $num = $stmt->rowCount();
     if($num>0){
 
@@ -17,12 +17,12 @@ function hazlotuyo($db, $terminator){
             "id" => $id,
             "nombre" => $nombre,
             "descripcion" => $descripcion,
-            "marca_id" => $marca_id,
-            "categoria_id" => $categoria_id,
+            "marca_nombre" => $marca_nombre,
+            "categoria_nombre" => $categoria_nombre,
             "precio" => $precio,
             "fecha_hasta" => $fecha_hasta,
-            "cobertura_id" => $cobertura_id,
-            "agencia_id" => $agencia_id,
+            "cobertura_titulo" => $cobertura_titulo,
+            "agencia_id" => $agencia_nombre,
             "patente" => $patente,
             "fecha_desde" => $fecha_desde
         );
