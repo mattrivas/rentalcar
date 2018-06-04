@@ -13,8 +13,7 @@ if($aDonde[2] == 'api'){
 	switch ($aDonde[3]) {
 		case 'auto':
 		$carlitos  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
-		print_r($carlitos);
-		hazlotuyo($db, $carlitos);
+		getAll($db, $carlitos);
 		break;
 
 		default:
