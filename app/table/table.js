@@ -4,10 +4,6 @@ jQuery(document).ready(function($) {
 	init();
 });
 function init(){
-<<<<<<< HEAD
-	console.log("Inicializada tabla")
-}
-=======
 	console.log("Inicializada tabla");
 	traeTabla();
 }
@@ -27,4 +23,13 @@ function traeTabla(){
 		}
 	});
 }
->>>>>>> 69255540ebfec43595a217edded079c5ba146052
+
+function insertar()
+{
+	$.ajax({
+		type:"get", data:{},
+		url:"./api/auto/guarda", dataType:'json',cache:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nroReserva);
+		}
+	});
+}

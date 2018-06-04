@@ -16,21 +16,12 @@ class Product{
   {
     $this->conn = $db;
   }
-<<<<<<< HEAD
 
-  function read($tkm)
-  {
-    $renombrame = $tkm;
-    $porfavor = $renombrame;
-    /*
-      "fechaDesde" : "2017-01-01",
-=======
   function read($params){
 
 /*
 
 "fechaDesde" : "2017-01-01",
->>>>>>> 69255540ebfec43595a217edded079c5ba146052
       "fechaHasta" : "2018-06-01",
       "cant" : "4",
       "ciudad" : "General Pico",
@@ -51,10 +42,8 @@ class Product{
       return $stmt;
     }
 
-    function create($tkm)
+    function create($params)
     {
-      $renombrame = $tkm;
-      $porfavor = $renombrame;
       /*
       "fechaDesde" : "2017-01-01",
       "fechaHasta" : "2018-06-01",
@@ -64,29 +53,34 @@ class Product{
       "pais" : "Argentina"
       */
       //$puertas = (cant > 3) ? 4 : 2;
-      $porfavor[3] = explode("=", $porfavor[3])[1]; 
-      $porfavor[4] = explode("=", $porfavor[4])[1];
-      $porfavor[5] = explode("=", $porfavor[5])[1];
-      $porfavor[6] = explode("=", $porfavor[6])[1];
+      $params[0] = explode("=", $params[0])[1]; 
+      $params[1] = explode("=", $params[1])[1];
+      $params[2] = explode("=", $params[2])[1];
+      $params[3] = explode("=", $params[3])[1];
 
-      $aux="SELECT marca_id, categoria_id, cobertura_id, cobertura_aseguradora_id, agencia_id FROM auto WHERE id='$porfavor[3]'";
+      $aux="SELECT marca_id, categoria_id, cobertura_id, cobertura_aseguradora_id, agencia_id FROM auto WHERE id='$params[0]'";
       $stmt=$this->conn->prepare($aux);
       $stmt->execute();
 
       $num = $stmt->rowCount();
-      if(num==1)
+      if($num==1)
       {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         extract($row);
-
-        $query="INSERT INTO reserva(dni, auto_id, auto_marca_id, auto_categoria_id, auto_cobertura_id, auto_cobertura_aseguradora_id, auto_agencia_id) VALUES ('$porfavor[6]', '$id', '$marca_id', '$categoria_id', '$cobertura_id', '$cobertura_aseguradora_id', '$agencia_id')";
+        print_r($row);
+        $query="INSERT INTO reserva(dni, auto_id, auto_marca_id, auto_categoria_id, auto_cobertura_id, auto_cobertura_aseguradora_id, auto_agencia_id) VALUES ('$params[3]', '$params[0]', '$marca_id', '$categoria_id', '$cobertura_id', '$cobertura_aseguradora_id', '$agencia_id')";
         $stmt=$this->conn->prepare($query);
         $stmt->execute();
 
-        $query="UPDATE auto SET fecha_hasta='$porfavor[5]', fecha_desde='$porfavor[4]' WHERE id='$porfavor[3]'";
+        $query="UPDATE auto SET fecha_hasta='$params[2]', fecha_desde='$params[1]' WHERE id='$params[0]'";
         $stmt=$this->conn->prepare($query);
         $stmt->execute();
       }
+
+      $query="SELECT MAX(id) maximo FROM reserva";
+      $stmt=$this->conn->prepare($query);
+      $stmt->execute();
+      return $stmt;
     }
   }
   ?>

@@ -1,32 +1,25 @@
 <?php
 include_once './objects/product.php';
 
-function registrar($db, $terminator)
+function create($db, $terminator)
 {
+    echo "ENTRE A PRODUCTO";
     $product = new Product($db);
-    $stmt = $product->read($terminator);
+    $stmt = $product->create($terminator);
     $num = $stmt->rowCount();
-    if($num>0){
+    if($num==1){
 
      $products_arr=array();
      $products_arr["auto"]=array();
 
      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        //echo "ENTRE A EXTRAER $row";
+        print_r($row);
         extract($row);
         $product_item=array(
-            "id" => $id,
-            "nombre" => $nombre,
-            "descripcion" => $descripcion,
-            "marca_id" => $marca_id,
-            "categoria_id" => $categoria_id,
-            "precio" => $precio,
-            "fecha_hasta" => $fecha_hasta,
-            "cobertura_id" => $cobertura_id,
-            "agencia_id" => $agencia_id,
-            "patente" => $patente,
-            "fecha_desde" => $fecha_desde
+            "id" => $maximo
         );
-
+        print_r($product_item);
         array_push($products_arr["auto"], $product_item);
     }
 

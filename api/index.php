@@ -15,17 +15,28 @@ $aDonde = explode("/",$_SERVER['REQUEST_URI']);
 if($aDonde[2] == 'api'){	
 	switch ($aDonde[3]) {
 		case 'auto':
-		$carlitos  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
-		getAll($db, $carlitos);
-		break;
+		$var=explode('?', $aDonde[4]);
 
-		case 'registar':
-		$jorgito=explode('&', urldecode($_SERVER['QUERY_STRING']));
-		print_r($jorgito);
-		create($db,$jorgito);
-		break;
-		
+		switch($var[0]){
+			case 'trae':
+			$carlitos  = explode('&', $var[1]);
+			getAll($db, $carlitos);
+			break;
 
+			case 'registrar':
+			$jorgito=explode('&', $var[1]);
+			//echo $_SERVER['QUERY_STRING'];
+			//echo "\n";
+			//echo $var[1];
+			create($db,$jorgito);
+			break;
+
+			default:
+			echo "Entré al default\n";
+			echo $var[0];
+			break;
+		}
+		break;
 		default:
 		echo "Pillin queres ir a $aDonde[3] con : $aDonde[4]";
 		break;
