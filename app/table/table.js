@@ -37,3 +37,11 @@ function eliminar()
 		}
 	});
 }
+function actualizar()
+{
+	$.ajax({
+		type:"get", data:{},url:"./api/auto/actualizar",dataType:'json',cahe:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nroReserva);
+		}
+	})
+}
