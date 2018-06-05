@@ -1,25 +1,53 @@
-<div class="content mt-3">
-	<div class="col-sm-12">
-		<table id="tautos" class="table table-striped table-bordered" cellspacing="0">
-			<thead>
-				<tr>
-					<td>Nombre</td>
-					<td>Marca_id</td>
-					<td>Precio</td>
-					<td>Agencia_id</td>
-					<td>Patente</td>
-					<th>Opciones</th>
-				</tr>
-			</thead>
-			<tfoot>
-			</tfoot>
-			<tbody></tbody>
-		</table>
-	</div>
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>Autitos</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Tablas</a></li>
+          <li class="active">Autos</li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="content mt-3">
+  <div class="animated fadeIn">
+    <div class="row">
 
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">Data Table</strong>
+          </div>
+          <div class="card-body">
+            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Precio($)</th>
+                  <th>Marca</th>
+                  <th>Categoria</th>
+                  <th>Cobertura</th>
+                  <th>Fecha Hasta</th>
+                  <th>Patente</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .animated -->
+</div><!-- .content -->
+<script src="./app/assets/js/lib/data-table/datatables-init.js"></script>
 <script src="./app/table/table.js"></script>
-<script type="text/javascript">
-	$('#tautos').DataTable();
-</script>
-</script>
+
