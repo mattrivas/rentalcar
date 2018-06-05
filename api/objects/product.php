@@ -125,6 +125,31 @@ class Product{
 		}
 		return $idauto;
 	}
+
+	//Considerando que recibe el id de la reserva a modificar, id de auto nuevo, la nueva fecha hasta, la nueva fecha desde y el nuevo dni//
+    function update($params){
+    	print_r($params);
+    	$params[0]=explode("=",$params[0])[1];
+    	$params[1]=explode("=",$params[1])[1];
+    	$params[2]=explode("=",$params[2])[1];
+    	$params[3]=explode("=",$params[3])[1];
+    	$params[4]=explode("=",$params[4])[1];
+
+    	$query="SELECT marca_id, categoria_id, cobertura_id, cobertura_aseguradora_id, agencia_id FROM auto WHERE id='$params[1]'";
+    	$stmt=$this->conn->prepare($query);
+    	$stmt->execute();
+    	$num=$stmt->rowCount();
+    	if($num==1){
+    		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+    		extract($row);
+    		$query="UPDATE reserva SET dni='$params[4]', auto_id='$params[1]', auto_marca_id='$marca_id', auto_categoria_id='$categoria_id', auto_cobertura_id='$cobertura_id', auto_cobertura_aseguradora_id='$cobertura_aseguradora_id', auto_agencia_id='$agencia_id' WHERE id='$params[0]'";
+    		$stmt=$this->conn->prepare($query);
+    		$stmt->execute();
+    		$query="UPDATE auto SET fecha_hasta='$params[2]', fecha_desde='$params[3]' WHERE id='$params[1]'";
+    		$stm=$this->conn->prepare($query);
+    		$stm->execute();
+    	}
+  	}
 }
 
 ?>

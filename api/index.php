@@ -40,6 +40,11 @@ if($aDonde[2] == 'api'){
 			delete($db,$fran);
 			break;
 
+			case 'actualizar':
+			$params=explode('&',$var[1]);
+			update($db,$params);
+			break;
+
 			default:
 			echo "Entré al default\n";
 			echo $var[0];
