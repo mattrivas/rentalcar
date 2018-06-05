@@ -12,10 +12,9 @@ $aDonde = explode("/",$_SERVER['REQUEST_URI']);
 if($aDonde[2] == 'api'){	
 	switch ($aDonde[3]) {
 		case 'auto':
-		$carlitos  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
-		getAll($db, $carlitos);
+		$params  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
+		getAll($db, $params);
 		break;
-
 		default:
 		echo "Pillin queres ir a $aDonde[3] con : $aDonde[4]";
 		break;

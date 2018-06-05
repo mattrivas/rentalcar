@@ -9,7 +9,8 @@ function init(){
 
 function traeTabla(){
 	$.ajax({
-		type:"get", data:{
+		type:"get", 
+		data:{
 			"fechaDesde" : "2017-06-01",
 			"fechaHasta" : "2018-06-01",
 			"cant" : "4",
