@@ -33,3 +33,12 @@ function insertar()
 		}
 	});
 }
+function eliminar()
+{
+	$.ajax({
+		type:"get", data:{},
+		url:"./api/auto/eliminar", dataType:'json',cache:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nrodni);
+		}
+	});
+}

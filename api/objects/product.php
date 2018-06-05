@@ -82,6 +82,31 @@ class Product{
       $stmt->execute();
       return $stmt;
     }
+    
+    function delete($params)
+    {
+      $params[0] = explode("=", $params[0])[1]; 
+      //$params[1] = explode("=", $params[1])[1];
+      //$params[2] = explode("=", $params[2])[1];
+      //$params[3] = explode("=", $params[3])[1];
+      $aux="Select auto_id from reserva where dni='$params[0]'";
+      $stmt=$this->conn->prepare($aux);
+      $stmt->execute();
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $num = $stmt->rowCount();
+      $idauto=$row['auto_id'];
+      if($num==1){
+          $aux2="Delete FROM reserva WHERE dni='$params[0]'";
+          $stmt2=$this->conn->prepare($aux2);
+          $stmt2->execute();
+          if($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+              $aux3="Update auto Set fecha_hasta=now() where id='$idauto'";
+              $stmt3=$this->conn->prepare($aux3);
+              $stmt3->execute();
+          }
+      }
+      return $idauto;
+    }
   }
   ?>
 

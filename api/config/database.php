@@ -2,9 +2,9 @@
 class Database{
 
     private $host = "localhost";
-    private $db_name = "rentalcar";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "sd2";
+    private $username = "francovallejin";
+    private $password = "vallejin94";
     public $conn;
  
     public function getConnection(){

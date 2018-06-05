@@ -7,6 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once './config/database.php';
 include_once './auto/read.php';
 include_once './auto/create.php';
+include_once './auto/delete.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -29,6 +30,14 @@ if($aDonde[2] == 'api'){
 			//echo "\n";
 			//echo $var[1];
 			create($db,$jorgito);
+			break;
+                    
+                        case 'eliminar':
+			$fran=explode('&', $var[1]);
+			//echo $_SERVER['QUERY_STRING'];
+			//echo "\n";
+			//echo $var[1];
+			delete($db,$fran);
 			break;
 
 			default:
