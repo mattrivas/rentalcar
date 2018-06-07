@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -56,6 +55,3 @@ else{
     );
 }
 ?>
-=======
- 
->>>>>>> afe7ad490caf428f3ceb959a189002416787bb9a
