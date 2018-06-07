@@ -1,12 +1,12 @@
 <?php
-
-//registrar?id=34&fecha_desde=2018-06-01&fecha_hasta=2018-06-15&dni=38796493
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once './config/database.php';
-include_once './auto/read.php';
+include_once './auto/search.php';
 include_once './auto/create.php';
+include_once './auto/update.php';
+include_once './auto/delete.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -15,17 +15,39 @@ $aDonde = explode("/",$_SERVER['REQUEST_URI']);
 if($aDonde[2] == 'api'){	
 	switch ($aDonde[3]) {
 		case 'auto':
-		$carlitos  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
-		getAll($db, $carlitos);
-		break;
+		$params  = explode('&', urldecode ( $_SERVER['QUERY_STRING']));
+		$var=explode('?', $aDonde[4]);
 
-		case 'registar':
-		$jorgito=explode('&', urldecode($_SERVER['QUERY_STRING']));
-		print_r($jorgito);
-		create($db,$jorgito);
-		break;
-		
+		switch($var[0]){
+			case 'trae':
+			if(!empty($var[1])){
+				$parametros  = explode('&', $var[1]);
+				getSome($db,$parametros);
+			}else{
+				getAll($db);
+			}
+			break;
 
+			case 'registrar':
+			$jorgito=explode('&', $var[1]);
+			create($db,$jorgito);
+			break;
+
+			case 'eliminar':
+			$fran=explode('&',$var[1]);
+			delete($db,$fran);
+
+			case 'actualizar':
+			$params=explode('&',$var[1]);
+			update($db,$params);
+			break;
+
+			default:
+			echo "Entré al default\n";
+			echo $var[0];
+			break;
+		}
+		break;
 		default:
 		echo "Pillin queres ir a $aDonde[3] con : $aDonde[4]";
 		break;

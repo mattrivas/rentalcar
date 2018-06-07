@@ -1,30 +1,47 @@
-$.noConflict();
-
 jQuery(document).ready(function($) {
 	init();
 });
 function init(){
-<<<<<<< HEAD
-	console.log("Inicializada tabla")
-}
-=======
 	console.log("Inicializada tabla");
 	traeTabla();
 }
 
 function traeTabla(){
-	$.ajax({
-		type:"get", data:{
-			"fechaDesde" : "2017-06-01",
-			"fechaHasta" : "2018-06-01",
-			"cant" : "4",
-			"ciudad" : "General Pico",
-			"provincia" : "La Pampa",
-			"pais" : "Argentina"
-		},
+	jQuery.ajax({
+		type:"get", 
+		data:{},
 		url:"./api/auto/trae", dataType:'json',cache:false, success:function(datos,textStatus,jqXHR){
-			console.log("RTA: "+datos.auto);
+			var t = jQuery('#bootstrap-data-table').DataTable();
+			for(var j=0; j<datos.auto.length; j++){
+				t.row.add([datos.auto[j].nombre,"$"+datos.auto[j].precio,datos.auto[j].marca_nombre,datos.auto[j].categoria_nombre,datos.auto[j].cobertura_titulo,datos.auto[j].fecha_hasta,datos.auto[j].patente,]).draw(false);
+			}
 		}
 	});
 }
->>>>>>> 69255540ebfec43595a217edded079c5ba146052
+
+function insertar()
+{
+	$.ajax({
+		type:"get", data:{},
+		url:"./api/auto/guarda", dataType:'json',cache:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nroReserva);
+		}
+	});
+}
+function eliminar()
+{
+	$.ajax({
+		type:"get", data:{},
+		url:"./api/auto/eliminar", dataType:'json',cache:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nrodni);
+		}
+	});
+}
+function actualizar()
+{
+	$.ajax({
+		type:"get", data:{},url:"./api/auto/actualizar",dataType:'json',cahe:false, success:function(datos,textStatus,jqXHR){
+			console.log("RTA: "+datos.nroReserva);
+		}
+	})
+}
