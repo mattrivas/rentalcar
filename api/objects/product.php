@@ -10,6 +10,7 @@ class Product{
 	public $category_name;
 	public $created;
 
+<<<<<<< HEAD
 	public function __construct($db){
 		$this->conn = $db;
 	}
@@ -22,6 +23,30 @@ class Product{
     return $stmt;
   }
 
+=======
+	private $conn;
+	private $table_name = "auto";
+	public $id;
+	public $name;
+	public $description;
+	public $price;
+	public $category_id;
+	public $category_name;
+	public $created;
+
+	public function __construct($db)
+	{
+		$this->conn = $db;
+	}
+	function all(){
+		$query = "SELECT auto.id, auto.nombre, descripcion, puertas, marca.nombre marca_nombre, categoria.nombre categoria_nombre, precio, cobertura.titulo cobertura_titulo, aseguradora.nombre aseguradora_nombre, agencia.nombre agencia_nombre, patente, fecha_desde, fecha_hasta FROM auto left join cobertura on(auto.cobertura_id = cobertura.id) left join marca on (auto.marca_id = marca.id) left join aseguradora on(cobertura.aseguradora_id = aseguradora.id) left join categoria on (auto.categoria_id = categoria.id) left join agencia on (auto.agencia_id = agencia.id) WHERE 1";
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->execute();
+
+		return $stmt;
+	}
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 	function read($params){
 		$where = "";
 		foreach($params as $clave=>$valor)
@@ -64,23 +89,54 @@ class Product{
 				break;
 			}
 		}
+<<<<<<< HEAD
 		$query = "SELECT auto.id, auto.nombre, descripcion, puertas, marca.nombre marca_nombre, categoria.nombre categoria_nombre, precio, cobertura.titulo cobertura_titulo, aseguradora.nombre aseguradora_nombre, agencia.nombre agencia_nombre, patente FROM auto left join cobertura on(auto.cobertura_id = cobertura.id) left join marca on (auto.marca_id = marca.id) left join aseguradora on(cobertura.aseguradora_id = aseguradora.id) left join categoria on (auto.categoria_id = categoria.id) left join agencia on (auto.agencia_id = agencia.id) WHERE $where 1";
+=======
+		$query = "SELECT auto.id, auto.nombre, descripcion, puertas, marca.nombre marca_nombre, categoria.nombre categoria_nombre, precio, cobertura.titulo cobertura_titulo, aseguradora.nombre aseguradora_nombre, agencia.nombre agencia_nombre, patente, fecha_desde, fecha_hasta FROM auto left join cobertura on(auto.cobertura_id = cobertura.id) left join marca on (auto.marca_id = marca.id) left join aseguradora on(cobertura.aseguradora_id = aseguradora.id) left join categoria on (auto.categoria_id = categoria.id) left join agencia on (auto.agencia_id = agencia.id) WHERE $where 1";
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		return $stmt;
 
 	}
 
+<<<<<<< HEAD
     function create($params)
+=======
+	function create($params)
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 	{
 		$params[0] = explode("=", $params[0])[1]; 
 		$params[1] = explode("=", $params[1])[1];
 		$params[2] = explode("=", $params[2])[1];
 		$params[3] = explode("=", $params[3])[1];
+<<<<<<< HEAD
 		$query="INSERT INTO reserva(dni, auto_id, fechaDesde, fechaHasta) VALUES ('$params[3]', '$params[0]', '$params[1]', '$params[2]')";
 		$stmt=$this->conn->prepare($query);
 		$stmt->execute();
 
+=======
+
+		$aux="SELECT marca_id, categoria_id, cobertura_id, cobertura_aseguradora_id, agencia_id FROM auto WHERE id='$params[0]'";
+		$stmt=$this->conn->prepare($aux);
+		$stmt->execute();
+
+		$num = $stmt->rowCount();
+		if($num==1)
+		{
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			extract($row);
+			print_r($row);
+			$query="INSERT INTO reserva(dni, auto_id, auto_marca_id, auto_categoria_id, auto_cobertura_id, auto_cobertura_aseguradora_id, auto_agencia_id) VALUES ('$params[3]', '$params[0]', '$marca_id', '$categoria_id', '$cobertura_id', '$cobertura_aseguradora_id', '$agencia_id')";
+			$stmt=$this->conn->prepare($query);
+			$stmt->execute();
+
+			$query="UPDATE auto SET fecha_hasta='$params[2]', fecha_desde='$params[1]' WHERE id='$params[0]'";
+			$stmt=$this->conn->prepare($query);
+			$stmt->execute();
+		}
+
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 		$query="SELECT MAX(id) maximo FROM reserva";
 		$stmt=$this->conn->prepare($query);
 		$stmt->execute();
@@ -100,9 +156,48 @@ class Product{
 			$aux2="Delete FROM reserva WHERE dni='$params[0]'";
 			$stmt2=$this->conn->prepare($aux2);
 			$stmt2->execute();
+<<<<<<< HEAD
 		}
 		return $idauto;
 	}
+=======
+			if($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+				$aux3="Update auto Set fecha_hasta=now() where id='$idauto'";
+				$stmt3=$this->conn->prepare($aux3);
+				$stmt3->execute();
+			}
+		}
+		return $idauto;
+	}
+
+	//Considerando que recibe el id de la reserva a modificar, id de auto nuevo, la nueva fecha hasta, la nueva fecha desde y el nuevo dni//
+    function update($params){
+    	print_r($params);
+    	$params[0]=explode("=",$params[0])[1];
+    	$params[1]=explode("=",$params[1])[1];
+    	$params[2]=explode("=",$params[2])[1];
+    	$params[3]=explode("=",$params[3])[1];
+    	$params[4]=explode("=",$params[4])[1];
+
+    	$query="SELECT marca_id, categoria_id, cobertura_id, cobertura_aseguradora_id, agencia_id FROM auto WHERE id='$params[1]'";
+    	$stmt=$this->conn->prepare($query);
+    	$stmt->execute();
+    	$num=$stmt->rowCount();
+    	if($num==1){
+    		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+    		extract($row);
+    		$query="UPDATE reserva SET dni='$params[4]', auto_id='$params[1]', auto_marca_id='$marca_id', auto_categoria_id='$categoria_id', auto_cobertura_id='$cobertura_id', auto_cobertura_aseguradora_id='$cobertura_aseguradora_id', auto_agencia_id='$agencia_id' WHERE id='$params[0]'";
+    		$stmt=$this->conn->prepare($query);
+    		$stmt->execute();
+    		$query="UPDATE auto SET fecha_hasta='$params[2]', fecha_desde='$params[3]' WHERE id='$params[1]'";
+    		$stm=$this->conn->prepare($query);
+    		$stm->execute();
+    	}
+  	}
+}
+
+?>
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 
     //Considerando que recibe el id de la reserva a modificar, id de auto nuevo, la nueva fechaDesde, la nueva fechaHasta y el nuevo dni//
     function update($params){

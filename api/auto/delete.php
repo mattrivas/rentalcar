@@ -17,4 +17,8 @@ function delete($db, $terminator)
 
     echo json_encode($products_arr);
 }
+<<<<<<< HEAD
 ?> 
+=======
+?> 
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8

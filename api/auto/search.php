@@ -15,6 +15,7 @@ function getSome($db, $params){
 				"id" => $id,
 				"nombre" => $nombre,
 				"descripcion" => $descripcion,
+<<<<<<< HEAD
 				"puertas" =>$puertas,
 				"marca_nombre" => $marca_nombre,
 				"categoria_nombre" => $categoria_nombre,
@@ -23,6 +24,16 @@ function getSome($db, $params){
 				"aseguradora_nombre" => $aseguradora_nombre,
 				"agencia_id" => $agencia_nombre,
 				"patente" => $patente
+=======
+				"marca_nombre" => $marca_nombre,
+				"categoria_nombre" => $categoria_nombre,
+				"precio" => $precio,
+				"fecha_hasta" => $fecha_hasta,
+				"cobertura_titulo" => $cobertura_titulo,
+				"agencia_id" => $agencia_nombre,
+				"patente" => $patente,
+				"fecha_desde" => $fecha_desde
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 			);
 
 			array_push($products_arr["auto"], $product_item);
@@ -49,6 +60,7 @@ function getAll($db){
 				"id" => $id,
 				"nombre" => $nombre,
 				"descripcion" => $descripcion,
+<<<<<<< HEAD
 				"puertas" =>$puertas,
 				"marca_nombre" => $marca_nombre,
 				"categoria_nombre" => $categoria_nombre,
@@ -57,6 +69,16 @@ function getAll($db){
 				"aseguradora_nombre" => $aseguradora_nombre,
 				"agencia_id" => $agencia_nombre,
 				"patente" => $patente
+=======
+				"marca_nombre" => $marca_nombre,
+				"categoria_nombre" => $categoria_nombre,
+				"precio" => $precio,
+				"fecha_hasta" => $fecha_hasta,
+				"cobertura_titulo" => $cobertura_titulo,
+				"agencia_id" => $agencia_nombre,
+				"patente" => $patente,
+				"fecha_desde" => $fecha_desde
+>>>>>>> c785b79b82a03b22d4ab7f37c65f50124139a3e8
 			);
 
 			array_push($products_arr["auto"], $product_item);
